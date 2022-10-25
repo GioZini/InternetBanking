@@ -3,19 +3,13 @@
 <head>
     <?php include_once('includes/head.php');
     session_start();
-    $_SESSION['nome'] = 'gustavo';
-    $dados = $_SESSION;
-    
-    if (isset($dados['usuario'])) {
-        header('Location: login.php');
-    }
+    $dados = $_SESSION
     ?>
     
 </head>
 <body>
-<?php include_once('includes/navbar.php'); 
-?>
-<div><h1>Bem vindo ao Internet Banking</h1></div>
+<?php include_once('includes/navbar.php');?>
+<div><h1>Bem vindo ao Internet Banking, <?php echo $dados['nome'];?></h1></div>
 <div><p>Acesse facilmente as informações da sua conta</p></div>
 </body>
 </html>

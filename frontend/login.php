@@ -17,7 +17,7 @@ if(isset($_POST['login']))
     $ret = $stmt->fetch();
     
     if($ret){        
-        $_SESSION['usuario_nome']=$ret['usuario_nome'];
+        $_SESSION['nome']=$ret['nome'];
         $_SESSION['cpf']=$ret['cpf'];
         echo "<script>window.location.href='index.php'</script>";
     }
@@ -48,7 +48,7 @@ if(isset($_POST['login']))
                                         <form method="post">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputCpf" type="cpf" name="cpf" placeholder="Cpf" required />
-                                                <label for="inputcpf">CPF - Ex.: 000.000.000-00</label>
+                                                <label for="inputcpf">CPF - Ex.: 00011122233</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputPassword" type="password" placeholder="Senha" name="password" required />
