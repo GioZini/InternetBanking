@@ -24,25 +24,30 @@
                                 <div class="card-body">
                                     <form method="post" name="registration" action="../backend/inserir.php">
                                         <div class="form-floating mb-3">
-                                            <input type="hidden" value="3" name="registro" id="registro">
+                                            <input type="hidden" value="1" name="registro" id="registro">
+                                            <input type="hidden" value="500" name="balanco" id="balanco">
                                             <input class="form-control" id="nome" type="text" name="nome"
                                                 placeholder="Insira Nome" required />
                                             <label for="nome">Nome</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="sobrenome" type="text" name="sobrenome"/>
+                                            <input class="form-control" id="sobrenome" type="text" name="sobrenome" 
+                                            placeholder="Sobrenome" required/>
                                             <label for="sobrenome">Sobrenome</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="cpf" type="text" name="cpf"/>
+                                            <input class="form-control" id="cpf" type="text" name="cpf"
+                                            placeholder="cpf" required/>
                                             <label for="cpf">CPF - Ex.: 00011122233</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="email" type="mail" name="email"/>
+                                            <input class="form-control" id="email" type="mail" name="email"
+                                            placeholder="email" required/>
                                             <label for="email">Email</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="fone" type="text" name="fone"/>
+                                            <input class="form-control" id="fone" type="text" name="fone"
+                                            placeholder="fone" required/>
                                             <label for="fone">Fone - Ex.: 54912345678</label>
                                         </div>
                                         <div class="row mb-3">

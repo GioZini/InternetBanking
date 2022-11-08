@@ -11,5 +11,6 @@
 <?php include_once('includes/navbar.php');?>
 <div><h1>Bem vindo ao Internet Banking, <?php echo $dados['nome'];?></h1></div>
 <div><p>Acesse facilmente as informações da sua conta</p></div>
+<div><h2>Seu Balanço é de: R$<?php echo $dados['balanco'];?></h2></div>
 </body>
 </html>

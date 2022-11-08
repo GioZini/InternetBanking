@@ -19,6 +19,11 @@ if(isset($_POST['login']))
     if($ret){        
         $_SESSION['nome']=$ret['nome'];
         $_SESSION['cpf']=$ret['cpf'];
+        $_SESSION['balanco']=$ret['balanco'];
+        $_SESSION['email']=$ret['email'];
+        $_SESSION['fone']=$ret['fone'];
+        $_SESSION['senha']=$ret['senha'];
+
         echo "<script>window.location.href='index.php'</script>";
     }
     else{
