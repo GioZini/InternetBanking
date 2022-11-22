@@ -19,7 +19,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Internet Banking</h3></div>
                                     <h3 class="text-center font-weight-light my-4">PIX</h3>
                                     <div class="card-body">
-                                        <form method="post">
+                                        <form method="post" name="pix" action="../backend/inserir.php">
 
                                             <div class="form-floating mb-3">
                                                 <input type="hidden" value="2" name="registro" id="registro">

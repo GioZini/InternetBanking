@@ -2,9 +2,14 @@
 include_once('conecta.php');
 $dados = $_POST;
 $banco = new Banco;
-try{
+
+
+session_start();
+$session = $_SESSION;
+
+try {
     $conn = $banco->conectar();
-} catch(PDOException $e){
+} catch (PDOException $e) {
     echo 'Falha ao salvar os arquivos. Favor, tente mais tarde.';
 }
 
@@ -18,83 +23,73 @@ try{
 switch ($dados['registro']) {
 
     case 1:
-        if($dados['senha'] == $dados['confirmpassword']){
-        $query = $conn->prepare('SELECT * FROM usuario WHERE cpf = :cpf');
-        $query->execute([
-            ':cpf' => $dados['cpf']           
-        ]);
-        // Se houver um item com esse nome no banco, ele não insere
-        if($query->fetch(PDO::FETCH_ASSOC) == null){
-            $query = $conn->prepare('INSERT INTO usuario (nome, sobrenome, senha, cpf, email, fone, balanco) VALUES (:nome, :sobrenome, :senha, :cpf, :email, :fone, :balanco);');
-        $query->execute([
-            ':nome' => $dados['nome'],
-            ':sobrenome' => $dados['sobrenome'],
-            ':senha' => $dados['senha'],
-            ':cpf' => $dados['cpf'],
-            ':email' => $dados['email'],
-            ':fone' => $dados['fone'],
-            ':balanco' => $dados['balanco'],
-        ]);
-        header('location:..\frontend\login.php');
-        
-        } else{
-            // Por enquanto só morre, depois mostrar de forma mais amigável para o usuário
-            die('Já existe um usuário com o mesmo CPF cadastrado');
-        }
-        break;
-    } else{
-        die("<script>alert('As senhas nâo coincidem');</script>");
-    }
-
-    case 2:
-        
-        $query0 = $conn0->prepare('SELECT * FROM usuario WHERE cpf = :cpfPagador');
-            $query0->execute([
-                ':cpfPagador' => $dados['cpfPagador'], 
-                'senha' => $senha           
-            ]);
-
-        if($dados['senha'] == [$senha]){
-            $query1 = $conn1->prepare('SELECT * FROM usuario WHERE cpf = :cpfPagador');
-            $query1->execute([
-                ':cpfPagador' => $dados['cpfPagador']           
-            ]);
-
-            $query2 = $conn2->prepare('SELECT * FROM usuario WHERE cpf = :cpfRecebedor');
-            $query2->execute([
-                ':cpfRecebedor' => $dados['cpfRecebedor']           
-            ]);
-            // Se não houver um item com esses cpfs no banco, ele não executa
-            if($query1->fetch(PDO::FETCH_ASSOC) != null AND $query2->fetch(PDO::FETCH_ASSOC) != null){
-                
-                die('funcionou');
-                /* $query = $conn->prepare('INSERT INTO usuario (nome, sobrenome, senha, cpf, email, fone, balanco) VALUES (:nome, :sobrenome, :senha, :cpf, :email, :fone, :balanco);');
+        if ($dados['senha'] == $dados['confirmpassword']) {
+            $query = $conn->prepare('SELECT * FROM usuario WHERE cpf = :cpf');
             $query->execute([
-                ':nome' => $dados['nome'],
-                ':sobrenome' => $dados['sobrenome'],
-                ':senha' => $dados['senha'],
-                ':cpf' => $dados['cpf'],
-                ':email' => $dados['email'],
-                ':fone' => $dados['fone'],
-                ':balanco' => $dados['balanco'],
+                ':cpf' => $dados['cpf']
             ]);
-            header('location:..\frontend\login.php'); */
-            
-            } else{
+            // Se houver um item com esse nome no banco, ele não insere
+            if ($query->fetch(PDO::FETCH_ASSOC) == null) {
+                $query = $conn->prepare('INSERT INTO usuario (nome, sobrenome, senha, cpf, email, fone, balanco) VALUES (:nome, :sobrenome, :senha, :cpf, :email, :fone, :balanco);');
+                $query->execute([
+                    ':nome' => $dados['nome'],
+                    ':sobrenome' => $dados['sobrenome'],
+                    ':senha' => $dados['senha'],
+                    ':cpf' => $dados['cpf'],
+                    ':email' => $dados['email'],
+                    ':fone' => $dados['fone'],
+                    ':balanco' => $dados['balanco'],
+                ]);
+                header('location:..\frontend\login.php');
+            } else {
                 // Por enquanto só morre, depois mostrar de forma mais amigável para o usuário
-                die('CPF do Pagador ou Recebedor inexistente');
+                die('Já existe um usuário com o mesmo CPF cadastrado');
             }
             break;
-        } else{
-            die("<script>alert('Senha Incorreta');</script>");
+        } else {
+            die("<script>alert('As senhas nâo coincidem');</script>");
         }
+
+    case 2:
+
+    $valor = $dados['valor'];
+
+        if ($session['senha'] == $dados['senha'] and $session['cpf'] == $dados['cpfPagador'] and $session['balanco'] >= $valor) {
+
+            $query1 = $conn->prepare('SELECT * FROM usuario WHERE cpf = :cpfRecebedor');
+            $query1->execute([
+                ':cpfRecebedor' => $dados['cpfRecebedor']
+            ]);
+            // Se houver um usuário com esse cpf no banco, ele executa
+            if ($query1->fetch(PDO::FETCH_ASSOC) != null) {
+                $query2 = $conn->prepare(' UPDATE usuario SET balanco = balanco + :valor WHERE cpf = :cpfRecebedor;');
+                $query2->execute([
+                    ':cpfRecebedor' => $dados['cpfRecebedor'],
+                    ':valor' => $valor
+                ]);
+
+                $query3 = $conn->prepare(' UPDATE usuario SET balanco = balanco - :valor WHERE cpf = :cpfPagador;');
+                $query3->execute([
+                    ':cpfPagador' => $dados['cpfPagador'],
+                    ':valor' => $valor
+                ]);
+
+
+            } else {
+                // Por enquanto só morre, depois mostrar de forma mais amigável para o usuário
+                die('CPF do Recebedor inexistente');
+            }
+        } else {
+            die('CPF ou senha do usuário incorretos ou Valor excede balanço da conta');
+        }
+        break;
 
     case 3:
     case 4:
-        
 }
 
-function pegaUltimoId($conexao){
+function pegaUltimoId($conexao)
+{
     $query = $conexao->prepare("SELECT LAST_INSERT_ID()");
     $query->execute();
     return $query->fetch(PDO::FETCH_NUM);
