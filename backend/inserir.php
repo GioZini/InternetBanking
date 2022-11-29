@@ -74,13 +74,56 @@ switch ($dados['registro']) {
                     ':valor' => $valor
                 ]);
 
+                $_SESSION['balanco']=$_SESSION['balanco']-$valor;
+                echo "
+                <html>
+                <body>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+                <script>
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Parabéns',
+                  text: 'Pix enviado com sucesso!'
+                }).then(function() {
+                    window.location = '../frontend/pix.php';
+                });
+              </script>
+              </body>
+              </html>";
 
             } else {
-                // Por enquanto só morre, depois mostrar de forma mais amigável para o usuário
-                die('CPF do Recebedor inexistente');
+                echo "
+                <html>
+                <body>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+                <script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Erro...',
+                  text: 'CPF do Recebedor inexistente'
+                }).then(function() {
+                    window.location = '../frontend/pix.php';
+                });
+              </script>
+              </body>
+              </html>";
             }
         } else {
-            die('CPF ou senha do usuário incorretos ou Valor excede balanço da conta');
+            echo "
+                <html>
+                <body>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+                <script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Erro...',
+                  text: 'CPF ou senha do usuário incorretos e/ou valor excede balanço da conta'
+                }).then(function() {
+                    window.location = '../frontend/pix.php';
+                });
+              </script>
+              </body>
+              </html>";
         }
         break;
 
