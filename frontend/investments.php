@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <?php include_once('includes/head.php'); include_once('includes/modal.php');
+    <?php 
     session_start();
-    $dados = $_SESSION
+    $dados = $_SESSION;
+    include_once('includes/head.php'); include_once('includes/modal.php');
     ?>
     
 </head>
@@ -26,7 +27,7 @@
             <div class="card-body">
                 <h5 class="card-title">Bolsa de valores Japonesa</h5>
                 <p class="card-text">Investimento modestamente volátil e de retorno médio.</p>
-                <a onclick="" class="btn btn-danger">Investir agora</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-jap" class="btn btn-danger">Investir agora</a>
             </div>
             </div>
 
@@ -35,7 +36,7 @@
             <div class="card-body">
                 <h5 class="card-title">Criptomoedas</h5>
                 <p class="card-text">Investimento extremamente volátil e de retorno alto.</p>
-                <a href="#" class="btn btn-danger">Investir agora</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-cripto" class="btn btn-danger">Investir agora</a>
             </div>
             </div>
 
