@@ -27,10 +27,8 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active"> <img class="first-slide" src="images/banner.jpg" alt="First slide"> </div>
-            <div class="carousel-item"> <img class="second-slide" src="images/banner.jpg" alt="Second slide"> </div>
-            <div class="carousel-item"> <img class="third-slide" src="images/banner.jpg" alt="Third slide"> </div>
           </div>
-          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev"> <i class='fa fa-angle-right'></i></a> <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> <i class='fa fa-angle-left'></i></a> </div>
+        </div>
         <!-- end banner --> 
       </div>
       <div class="col-md-6">

@@ -18,6 +18,7 @@ if(isset($_POST['login']))
     
     if($ret){        
         $_SESSION['nome']=$ret['nome'];
+        $_SESSION['sobrenome']=$ret['sobrenome'];
         $_SESSION['cpf']=$ret['cpf'];
         $_SESSION['balanco']=$ret['balanco'];
         $_SESSION['email']=$ret['email'];

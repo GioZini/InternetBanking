@@ -44,10 +44,14 @@
 }
 #icones{
     display: inline-block;
-    padding-left: 630px;
+    padding-left: 650px;
 }
 #brand{
 	color: white;
+}
+#infos{
+	color: white;
+	padding-left: 250px;
 }
 body {
 	color: #666666;
