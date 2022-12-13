@@ -3,11 +3,21 @@
 <head>
     <?php include_once('includes/head.php');
     session_start();
-    $dados = $_SESSION
+    $session = $_SESSION
     ?>
     
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+
 </head>
-<body>
+<body class="bg-danger">
 <?php include_once('includes/navbar.php');?>
 <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -43,7 +53,7 @@
                                             </div>
                                 
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <button class="btn btn-primary form-control"  type="submit" name="pagar">Pagar</button>
+                                                <button class="btn btn-danger form-control"  type="submit" name="pagar">Pagar</button>
                                             </div>
                                         </form>
                                     </div>

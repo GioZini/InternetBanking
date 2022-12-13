@@ -6,11 +6,49 @@
     $session = $_SESSION
     ?>
     
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+
 </head>
-<body>
+<body class="main-layout">
 <?php include_once('includes/navbar.php');?>
-<div><h1>Bem vindo ao Internet Banking, <?php echo $session['nome'];?></h1></div>
-<div><p>Acesse facilmente as informações da sua conta</p></div>
-<div><h2>Seu Balanço é de: R$<?php echo $session['balanco'];?></h2></div>
+<br>
+<section class="slider_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6"> 
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active"> <img class="first-slide" src="images/banner.jpg" alt="First slide"> </div>
+            <div class="carousel-item"> <img class="second-slide" src="images/banner.jpg" alt="Second slide"> </div>
+            <div class="carousel-item"> <img class="third-slide" src="images/banner.jpg" alt="Third slide"> </div>
+          </div>
+          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev"> <i class='fa fa-angle-right'></i></a> <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> <i class='fa fa-angle-left'></i></a> </div>
+        <!-- end banner --> 
+      </div>
+      <div class="col-md-6">
+        <div class="full-slider_cont">
+          <h1>Internet<br>
+            <span class="dark_brown">Banking</span></h1>
+          <p>Suas soluções bancárias são simplificadas e livres de taxas quando<br>
+            feitas pelo Sistema Internet Banking.<br> 
+            Todos usuários são livres de taxas para usufruir do nosso pix e da<br> 
+            nossa ampla variedade de investimentos bancários, que vão da compra<br> 
+            de participações em fundos do mercado imobiliário, compra de ações<br> 
+            da bolsa de valores japonesa e investimentos em criptomoedas. 
+           </p>
+          <div class="button_section"> <a class="main_bt" href="pix.php">Pix</a> <a class="main_bt" href="investments.php">Investir</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </body>
 </html>

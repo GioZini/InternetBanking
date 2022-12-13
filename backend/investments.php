@@ -32,6 +32,8 @@ switch ($dados['registroInvestimento']) {
                 ':valor' => $valor
                 ]);
 
+                $_SESSION['balanco']=$_SESSION['balanco']-($valor*0.3);
+
                 echo "
                 <html>
                 <body>
@@ -56,6 +58,8 @@ switch ($dados['registroInvestimento']) {
                     ':valor' => $valor
                     ]);
 
+                    $_SESSION['balanco']=$_SESSION['balanco']+($valor*0.1);
+
                     echo "
                     <html>
                     <body>
@@ -77,6 +81,8 @@ switch ($dados['registroInvestimento']) {
                         ':cpfInvestidor' => $_SESSION['cpf'],
                         ':valor' => $valor
                         ]);
+
+                        $_SESSION['balanco']=$_SESSION['balanco']+($valor*0.5);
 
                         echo "
                         <html>
@@ -124,11 +130,13 @@ switch ($dados['registroInvestimento']) {
             $sorte = rand(1,10);
 
         if ($sorte == 1 or $sorte == 2){
-            $query1 = $conn->prepare(' UPDATE usuario SET balanco = balanco - (:valor * 0.70) WHERE cpf = :cpfInvestidor;');
+            $query1 = $conn->prepare(' UPDATE usuario SET balanco = balanco - (:valor * 0.7) WHERE cpf = :cpfInvestidor;');
             $query1->execute([
             ':cpfInvestidor' => $_SESSION['cpf'],
             ':valor' => $valor
             ]);
+
+            $_SESSION['balanco']=$_SESSION['balanco']-($valor*0.7);
 
             echo "
             <html>
@@ -154,6 +162,8 @@ switch ($dados['registroInvestimento']) {
                 ':valor' => $valor
                 ]);
 
+                $_SESSION['balanco']=$_SESSION['balanco']-($valor*0.2);
+
                 echo "
                 <html>
                 <body>
@@ -175,6 +185,8 @@ switch ($dados['registroInvestimento']) {
                     ':cpfInvestidor' => $_SESSION['cpf'],
                     ':valor' => $valor
                     ]);
+
+                    $_SESSION['balanco']=$_SESSION['balanco']+($valor*1.1);
 
                     echo "
                     <html>
@@ -225,6 +237,8 @@ switch ($dados['registroInvestimento']) {
             ':valor' => $valor
             ]);
 
+            $_SESSION['balanco']=$_SESSION['balanco']-($valor*1);
+
             echo "
             <html>
             <body>
@@ -248,6 +262,7 @@ switch ($dados['registroInvestimento']) {
                 ':cpfInvestidor' => $_SESSION['cpf'],
                 ':valor' => $valor
                 ]);
+                $_SESSION['balanco']=$_SESSION['balanco']-($valor*0.6);
 
                 echo "
                 <html>
@@ -270,6 +285,8 @@ switch ($dados['registroInvestimento']) {
                     ':cpfInvestidor' => $_SESSION['cpf'],
                     ':valor' => $valor
                     ]);
+
+                    $_SESSION['balanco']=$_SESSION['balanco']+($valor*4);
 
                     echo "
                     <html>
